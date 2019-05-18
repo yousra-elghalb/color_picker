@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<body>
+ <svg id="root" width="1000" height="1000" >
+
+</svg>
+
+<script>    
+ var svgElement = document.getElementById('root')
+ 
+    var svgElementNS = svgElement.namespaceURI;
+    var i;
+    for(i=0;i<300;i++){
+        var rect = document.createElementNS(svgElementNS,'rect');
+        rect.setAttribute('x',300);
+        rect.setAttribute('y',0.8*(1+i));
+        rect.setAttribute('width',15);
+        rect.setAttribute('height',0.8);
+        rect.setAttribute('fill','hsl('+i+', 98%, 50%)');
+        rect.setAttribute('onclick','f1('+i+')');
+        svgElement.appendChild(rect);       
+    }
+    document.body.appendChild(svgElement);
+   
+   for(i=0;i<=100;i++){
+        for(j=0;j<=100;j++){
+        var rect = document.createElementNS(svgElementNS,'rect');
+        rect.setAttribute('x',2.5*(i+1));
+        rect.setAttribute('y',2.5*(1+j));
+        rect.setAttribute('width',3);
+        rect.setAttribute('height',3);
+        rect.setAttribute('id','i'+i+'j'+j);
+        rect.setAttribute('fill','hsl(30, '+i+'%, '+j+'%)');
+        svgElement.appendChild(rect);        
+        }     
+    }
+    document.body.appendChild(svgElement);
+function f1(color){
+    var i;
+    for(i=0;i<=100;i++){
+        for(j=0;j<=100;j++){
+        var rect = document.getElementById('i'+i+'j'+j);
+        rect.setAttribute('fill','hsl('+color+', '+i+'%, '+j+'%)');
+        }     
+    }
+
+}
+</script>
+</body>
+</html>
